@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+        <style>
+            body{
+                background: #d8d6d66e;;
+            }
+            .section
+            {
+                width: 50%;
+                margin: auto;
+                height: 50%;
+            }
+            .container
+            {
+                text-align: center;
+                margin-top: 150px;
+                padding: 20px;
+                border: 1px solid #2ebd2e61;
+                border-radius: 10px;
+                        }
+            h2{
+                color: #2ebd2e;
+                font-size: 30px;;
+            }
+            .quraanContainer{
+                color: #222;
+                margin-bottom: 20px;
+                font-size: 18px;
+            }
+            .btn{
+                width: 100px;
+                height: 33px;
+                background: #2ebd2e;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="section">
+            <div class="container">
+                <h2>قرأن كريم</h2>
+                <div class="quraanContainer">
+                    
+                </div>
+                <button class="btn">إظهار أية</button>
+            </div>
+        </div>
+
+
+        <script>
+
+
+
+                    const quraanContainer = document.querySelector('.quraanContainer'),
+                            btn = document.querySelector('.btn');
+                            btn.addEventListener('click',getAyah);
+                            getAyah();
+                            async function getAyah()
+                            {
+                                const res = await fetch('http://api.alquran.cloud/v1/ayah/random');
+                                const data = await res.json();
+                                if(res.status == 200)
+                                {
+                                    let quranAyah = data.data.text;
+                                    quraanContainer.innerText = quranAyah;
+                                }
+                            }
+        </script>
+    </body>
+</html>
